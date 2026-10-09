@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dashboard &middot; FreeFire BR Bot</title>
+  <link rel="stylesheet" href="/static/style.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">FF</div>
+        <div>
+          <h1>Dashboard</h1>
+          <p id="userTag">Overview of all your accounts</p>
+        </div>
+      </div>
+      <div class="global-status" id="globalStatusWrap">
+        <span class="dot"></span>
+        <span id="globalStatus">Idle</span>
+      </div>
+    </header>
+
+    <div id="loading" class="loading">Loading dashboard...</div>
+
+    <div id="content" style="display:none">
+      <div class="dash-hero">
+        <h2>&#128202; Your Bot at a Glance</h2>
+        <p id="heroSub">Live totals across every account you have added.</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi blue">
+          <div class="ic">&#128101;</div>
+          <div class="v" id="kAccounts">0</div>
+          <div class="k">Total Accounts</div>
+        </div>
+        <div class="kpi green">
+          <div class="ic">&#11014;&#65039;</div>
+          <div class="v" id="kExpGain">0</div>
+          <div class="k">Total EXP Gained</div>
+        </div>
+        <div class="kpi amber">
+          <div class="ic">&#127942;</div>
+          <div class="v" id="kMatches">0</div>
+          <div class="k">Total Matches Played</div>
+        </div>
+        <div class="kpi cyan">
+          <div class="ic">&#10024;</div>
+          <div class="v" id="kExp">0</div>
+          <div class="k">Total Current EXP</div>
+        </div>
+        <div class="kpi green">
+          <div class="ic">&#128225;</div>
+          <div class="v" id="kInMatch">0</div>
+          <div class="k">In Match Now</div>
+        </div>
+        <div class="kpi blue">
+          <div class="ic">&#11044;</div>
+          <div class="v" id="kOnline">0</div>
+          <div class="k">Online / Ready</div>
+        </div>
+      </div>
+
+      <div class="section-title">Status Breakdown</div>
+      <div class="dash-hero" style="margin-bottom:0">
+        <div class="stat-bars" id="statusBars"></div>
+      </div>
+
+      <div class="section-title">Account Details</div>
+      <div class="dash-list" id="dashList"></div>
+      <div id="dashEmpty" class="empty" style="display:none">
+        <div class="big">&#128202;</div>
+        <h3>No data yet</h3>
+        <p>Add accounts on the Accounts page to see stats here.</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a class="nav-item" href="/"><span class="ic">&#128101;</span>Accounts</a>
+    <a class="nav-item active" href="/dashboard"><span class="ic">&#128202;</span>Dashboard</a>
+    <button class="nav-item" id="logoutBtn"><span class="ic">&#128682;</span>Logout</button>
+  </nav>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in &middot; FreeFire BR Bot</title>
+  <link rel="stylesheet" href="/static/style.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="auth-hero">
+      <div class="logo">FF</div>
+      <h1>FreeFire BR Bot</h1>
+      <p>Sign in to control your BR accounts</p>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button id="tabLogin" class="active" type="button">Login</button>
+        <button id="tabRegister" type="button">Register</button>
+      </div>
+
+      <form id="authForm" class="auth-form" autocomplete="off">
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" placeholder="your username" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="your password" autocomplete="current-password" required />
+        </div>
+        <div class="field" id="confirmField" style="display:none">
+          <label for="confirm">Confirm password</label>
+          <input id="confirm" name="confirm" type="password" placeholder="repeat password" />
+        </div>
+
+        <div class="auth-msg" id="authMsg"></div>
+        <button class="btn block" id="submitBtn" type="submit">Login</button>
+      </form>
+
+      <div class="auth-foot" id="authFoot">No account yet? Tap <b>Register</b> above.</div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+[
+  {
+    "owner": "siam_bhai",
+    "uid": "4833510659",
+    "password": "6BBB087FCD846F1044B4FC30D7E861A88D5A707D605220251F0A368A961D5F93",
+    "region": "BD",
+    "last_exp": 9049,
+    "base_exp": null,
+    "exp_gain": 0,
+    "total_matches": 0,
+    "match_info": {
+      "server_ip_port": "162.128.249.156:10017",
+      "udp_key": "a93d0eda76ec50490fa59045478366f8",
+      "match_code": "04231",
+      "account_id": 15700336844,
+      "region": "BD",
+      "client_version": "1.132.9",
+      "match_index": 1,
+      "started_at": 1791562317.8069057
+    }
+  }
+]

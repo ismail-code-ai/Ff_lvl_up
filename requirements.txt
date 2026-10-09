@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+httpx
+pycryptodome
+protobuf
+protobuf_decoder
+google_play_scraper
+websockets

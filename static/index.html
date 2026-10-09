@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FreeFire BR Bot Panel</title>
+  <link rel="stylesheet" href="/static/style.css" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- ===== Top bar ===== -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">FF</div>
+        <div>
+          <h1>FreeFire BR Bot</h1>
+          <p id="userTag">Web Control Panel</p>
+        </div>
+      </div>
+      <div class="global-status" id="globalStatusWrap">
+        <span class="dot"></span>
+        <span id="globalStatus">Idle</span>
+      </div>
+    </header>
+
+    <!-- ===== Search ===== -->
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="Search UID or nickname..." autocomplete="off" />
+    </div>
+
+    <!-- ===== Filter tabs ===== -->
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-filter="all">All <span class="cnt" id="cAll">0</span></button>
+      <button class="tab" data-filter="match">Match <span class="cnt" id="cMatch">0</span></button>
+      <button class="tab" data-filter="online">Online <span class="cnt" id="cOnline">0</span></button>
+      <button class="tab" data-filter="paused">Paused <span class="cnt" id="cPaused">0</span></button>
+    </div>
+
+    <!-- ===== Add account ===== -->
+    <div class="add-panel" id="addPanel">
+      <div class="add-head" id="addHead">
+        <h2>&#10133; Add Account</h2>
+        <span class="chev">&#9662;</span>
+      </div>
+      <div class="add-body">
+        <form id="addForm" class="form-grid" autocomplete="off">
+          <div class="field">
+            <label for="uid">UID</label>
+            <input id="uid" name="uid" placeholder="e.g. 123456789" required />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="account password" required />
+          </div>
+          <div class="field">
+            <label for="region">Region</label>
+            <select id="region" name="region"></select>
+          </div>
+          <button class="btn block" type="submit" id="addBtn">Add & Fetch Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== Cards ===== -->
+    <div id="accounts" class="cards"></div>
+    <div id="empty" class="empty" style="display:none">
+      <div class="big">&#127918;</div>
+      <h3>No accounts yet</h3>
+      <p>Add a FreeFire UID above to fetch its profile,<br/>then press play to start an auto BR match.</p>
+    </div>
+  </div>
+
+  <!-- ===== Bottom nav ===== -->
+  <nav class="bottom-nav">
+    <a class="nav-item active" href="/"><span class="ic">&#128101;</span>Accounts</a>
+    <a class="nav-item" href="/dashboard"><span class="ic">&#128202;</span>Dashboard</a>
+    <button class="nav-item" id="logoutBtn"><span class="ic">&#128682;</span>Logout</button>
+  </nav>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== Confirm modal ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon" id="modalIcon">&#9888;&#65039;</div>
+      <h3 id="modalTitle">Are you sure?</h3>
+      <p id="modalText"></p>
+      <div class="modal-btns">
+        <button class="btn ghost" id="modalCancel" type="button">Cancel</button>
+        <button class="btn" id="modalConfirm" type="button">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

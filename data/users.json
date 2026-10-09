@@ -1,0 +1,16 @@
+{
+  "users": {
+    "siam_bhai": {
+      "username": "siam_bhai",
+      "salt": "bbe6b35e5094d6ed5e73ec0ab2239a3a",
+      "hash": "dda50b0e321fb14fa949b85be8ccc0c70ef277e99b1f4d9e40ae3a30244f3857",
+      "created": 1791562279.156008
+    }
+  },
+  "sessions": {
+    "fNYM2URkqr642oEBoVGAzORX5iW4ma8IkneiKsl8Nq8": {
+      "username": "siam_bhai",
+      "expires": 1792167079.177554
+    }
+  }
+}
