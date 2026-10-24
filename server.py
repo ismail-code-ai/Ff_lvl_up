@@ -79,10 +79,12 @@ def owner_of(user: dict = Depends(require_user)) -> str:
     return user["username"].lower()
 
 
-def _set_session_cookie(resp: JSONResponse, token: str) -> JSONResponse:
+def _set_session_cookie(resp: JSONResponse, token: str, secure: bool) -> JSONResponse:
+    # Only send the session cookie over HTTPS when the request uses HTTPS.
+    # If TLS terminates at a reverse proxy, configure the ASGI proxy headers correctly.
     resp.set_cookie(
         SESSION_COOKIE, token, max_age=SESSION_MAX_AGE,
-        httponly=True, samesite="lax", path="/",
+        httponly=True, secure=secure, samesite="lax", path="/",
     )
     return resp
 
@@ -120,23 +122,23 @@ async def favicon():
 
 # ----------------------------- auth API ---------------------------
 @app.post("/api/auth/register")
-async def auth_register(req: AuthReq):
+async def auth_register(req: AuthReq, request: Request):
     try:
         user = users.register(req.username, req.password)
     except AuthError as e:
         raise HTTPException(status_code=400, detail=str(e))
     token = users.create_session(user["username"])
-    return _set_session_cookie(JSONResponse({"ok": True, "user": user}), token)
+    return _set_session_cookie(JSONResponse({"ok": True, "user": user}), token, request.url.scheme == "https")
 
 
 @app.post("/api/auth/login")
-async def auth_login(req: AuthReq):
+async def auth_login(req: AuthReq, request: Request):
     try:
         user = users.authenticate(req.username, req.password)
     except AuthError as e:
         raise HTTPException(status_code=401, detail=str(e))
     token = users.create_session(user["username"])
-    return _set_session_cookie(JSONResponse({"ok": True, "user": user}), token)
+    return _set_session_cookie(JSONResponse({"ok": True, "user": user}), token, request.url.scheme == "https")
 
 
 @app.post("/api/auth/logout")
