@@ -23,7 +23,7 @@ SESSION_TTL = 60 * 60 * 24 * 7  # 7 days
 
 USERNAME_MIN = 3
 USERNAME_MAX = 24
-PASSWORD_MIN = 4
+PASSWORD_MIN = 12
 
 
 def _hash_password(password: str, salt: Optional[str] = None) -> Dict[str, str]:
@@ -92,6 +92,11 @@ class UserStore:
             raise AuthError("Username may only contain letters, numbers, . _ -")
         if len(password) < PASSWORD_MIN:
             raise AuthError(f"Password must be at least {PASSWORD_MIN} characters")
+
+        # This panel is intended for one personal user only.
+        # Keep public registration available only for initial setup.
+        if self.users:
+            raise AuthError("Registration is disabled: the personal account already exists")
 
         key = username.lower()
         if key in self.users:
