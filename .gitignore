@@ -26,3 +26,6 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Archives may accidentally include runtime data or credentials
+*.zip
