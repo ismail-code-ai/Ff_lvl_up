@@ -38,6 +38,11 @@ async function submit(e) {
 
   if (!username || !password) { showMsg("Please fill in username and password."); return; }
   if (mode === "register" && password !== confirm) { showMsg("Passwords do not match."); return; }
+  let setupToken = "";
+  if (mode === "register") {
+    setupToken = window.prompt("Enter the server setup token (FF_SETUP_TOKEN):") || "";
+    if (!setupToken) { showMsg("Setup token is required for initial registration."); return; }
+  }
 
   const btn = $("submitBtn");
   btn.disabled = true;
@@ -47,7 +52,7 @@ async function submit(e) {
     const res = await fetch("/api/auth/" + (mode === "login" ? "login" : "register"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password, setup_token: setupToken }),
     });
     let data = null;
     try { data = await res.json(); } catch (err) {}
