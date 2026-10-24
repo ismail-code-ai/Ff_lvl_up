@@ -12,6 +12,7 @@ Includes:
 """
 import sys
 import asyncio
+import secrets
 
 # ---------------------------------------------------------------------------
 # Windows compatibility (must run BEFORE any event loop is created):
@@ -58,6 +59,7 @@ class AddAccountReq(BaseModel):
 class AuthReq(BaseModel):
     username: str
     password: str
+    setup_token: str = ""
 
 
 # ----------------------------- auth helpers -----------------------
@@ -123,6 +125,11 @@ async def favicon():
 # ----------------------------- auth API ---------------------------
 @app.post("/api/auth/register")
 async def auth_register(req: AuthReq, request: Request):
+    setup_token = os.environ.get("FF_SETUP_TOKEN", "")
+    if not setup_token:
+        raise HTTPException(status_code=503, detail="Initial registration is disabled until FF_SETUP_TOKEN is configured")
+    if not secrets.compare_digest(req.setup_token, setup_token):
+        raise HTTPException(status_code=403, detail="Invalid setup token")
     try:
         user = users.register(req.username, req.password)
     except AuthError as e:
