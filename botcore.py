@@ -191,7 +191,6 @@ _DNS_CACHE: Dict[str, Tuple[str, float]] = {}
 _DNS_CACHE_TTL = 300.0
 
 client = httpx.AsyncClient(
-    verify=False,
     timeout=15.0,
     limits=httpx.Limits(max_connections=300, max_keepalive_connections=150)
 )
